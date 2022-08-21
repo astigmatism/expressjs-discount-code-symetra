@@ -1,9 +1,12 @@
 import express, { Express, NextFunction, Request, Response } from 'express';
 
-export const register = (app: express.Application) => {
-    
+export const IndexRoutes = express.Router();
 
-    app.get("/", (request: Request, response: Response, next: NextFunction) => {        
-        response.render('index');
-    });
+const isAuthenticated = (request: Request, response: Response, next: NextFunction) => {
+    if (request.isAuthenticated()) return next();
+    response.redirect('/user/signin');
 };
+
+IndexRoutes.get("/", isAuthenticated, (request: Request, response: Response, next: NextFunction) => {
+    response.redirect('/store');
+});

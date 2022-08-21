@@ -1,5 +1,59 @@
-html
-  head
-    title= "Hello World"
-  body
-    h1= "Hello World"
+doctype html
+html(lang='en')
+    head
+        title= `Welcome to `
+        style
+            include ..\public\css\styles.css
+            include ..\public\css\index.css
+        script.
+            const closeDialog = (dialogId) => {
+                document.getElementById('shim').style.display = 'none';
+                document.getElementById(dialogId).style.display = 'none';
+            };
+            
+            const addToCart = (productId) => {
+                fetch('/cart/add', { 
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json'},
+                    body: JSON.stringify({ 'productId': productId })
+                })
+                .catch((e) => {
+                    console.log(e);
+                });
+            }
+
+            const calculateDiscountPrice = (price, adjustment) => {
+                return (price - (price * adjustment)).toFixed(2);
+            }
+
+            window.onload = () => {
+                
+            }
+    body
+        div.shim#shim(style={display: (discountCode ? 'block' : 'none')})
+        div.dialog#offercode(style={display: (discountCode ? 'block' : 'none')})
+            h4 Congratulations!
+            p You've been offered the discount code: 
+            h2= (discountCode ? discountCode.code : '')
+            p= (discountCode ? discountCode.description : '')
+            button(onclick=`closeDialog('offercode')`) Close
+
+        div.header
+            ol
+                li= `Welcome ${username}`
+            ol.right-aligned
+                li
+                    a(href="/cart") View Cart
+                li
+                    a(href="/user/logout") Logout
+
+        div.content
+            ol.products
+                each product in storeproducts
+                    li.store-product
+                        img(src=`/images/${product.image}.jpg`)
+                        button(onclick=`addToCart(${product.id})`) Add to Cart
+                        div= product.name
+                        div(class=(discountCode ? 'discounted' : ''))= `$${product.price.toFixed(2)}`
+                        div= (discountCode ? '$' + (product.price - (product.price * discountCode.priceAdjustment)).toFixed(2) : '')
+

@@ -1,0 +1,43 @@
+doctype html
+html(lang='en')
+    head
+        title Please sign in!
+        style
+            include ..\public\css\styles.css
+            include ..\public\css\signin.css
+        script.
+            const buttonClicked = () => {
+                const username = document.getElementById("usertype").value;
+                fetch('/user/login', { 
+                    method: 'POST',
+                    redirect: 'follow',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({username: username, password: 'password'}) 
+                })
+                .then((response) => {
+                    if (response.redirected) {
+                        return window.location.href = response.url;
+                    }
+                    throw new Error('Redirection after auth failed');
+                })
+                .catch((e) => {
+                    console.log(e);
+                });
+            };
+    body
+        div.login
+            div.welcome-banner
+                h4 Store name here!
+            div.center-dialog
+                div.field
+                    label Username:
+                    select#usertype
+                        each value in usernames
+                            option= value
+                div.field
+                    label Password:
+                    input(value="password", disabled=true)
+                div.buttons
+                    button(onclick=`buttonClicked('admin')`) Login

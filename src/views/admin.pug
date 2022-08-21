@@ -1,0 +1,114 @@
+doctype html
+html(lang='en')
+    head
+        title= `Admin portal`
+        style
+            include ..\public\css\styles.css
+            include ..\public\css\admin.css
+        script.
+            const setClicked = () => {
+                const everyNth = parseInt(document.getElementById("everynth").value, 10);
+                const offer = document.getElementById("discountCode").value;
+                if (!Number.isInteger(everyNth)) {
+                    alert('The "Discount Offer Rate" field does not include a valid number');
+                    return;
+                }
+                
+                fetch('/admin/setOffer', { 
+                    method: 'POST',
+                    redirect: 'follow',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({offer: offer, everyNth: everyNth}) 
+                })
+                .then((response) => {
+                    if (response.redirected) {
+                        return window.location.href = response.url;
+                    }
+                    throw new Error('Redirection after setOffer failed');
+                })
+                .catch((e) => {
+                    console.log(e);
+                });
+            };
+            const clearClicked = () => {               
+                fetch('/admin/clearOffer', { 
+                    method: 'POST',
+                    redirect: 'follow',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                })
+                .then((response) => {
+                    if (response.redirected) {
+                        return window.location.href = response.url;
+                    }
+                    throw new Error('Redirection after setOffer failed');
+                })
+                .catch((e) => {
+                    console.log(e);
+                });
+            };
+
+            const updateStaticFields = () => {
+                let discount = JSON.parse(document.getElementById('discountCode').value);
+                document.getElementById('offerDescription').innerHTML = discount.description;
+                document.getElementById('priceAdjustment').innerHTML = `${discount.priceAdjustment * 100}%`;
+            }
+
+            window.onload = () => {
+                updateStaticFields();
+            }
+    body
+        div.header
+            ol
+                li= `Welcome admin`
+            ol.right-aligned
+                li
+                    a(href="/user/logout") Logout
+                
+        
+        
+        div.content
+
+            div.control-panel
+                div.field
+                    label Discount Code to Offer:
+                    select#discountCode(onchange="updateStaticFields()")
+                        each value in discountCodes
+                            option(
+                                value=`${JSON.stringify(value)}`, 
+                                selected= (activeDiscountCode ? value.id === activeDiscountCode.discountCode.id : false)
+                            )= value.code
+                div.field
+                    label Discount Code Descrption:
+                    div#offerDescription
+                div.field
+                    label Price Reduction:
+                    div#priceAdjustment
+                div.field
+                    label Discount Offer Rate:
+                    div
+                        span Offered to Every 
+                        input.number-input#everynth(value=`${activeDiscountCode ? activeDiscountCode.offeredToEveryNthCustomer : '' }`)
+                        span= ` Customer(s)`
+                div.buttons
+                    button(onclick=`clearClicked()`) Clear Active Offer
+                    button(onclick=`setClicked()`) Set
+            
+            div.report
+                    h3 Store Report:
+
+                    div= `Total Customer Visits: ${report.customerVisits}`
+                    div= `Total Overall Transactions: ${report.totalTransactions}`
+                    div= `Total In Sales: ${report.totalSales.toFixed(2)}`
+                    div= `Total Discounted Transactions: ${report.totalDiscountTransations}`
+                    div= `Total In Discoutned Sales: ${report.totalDiscountedSales}`
+                    div= `Total Times Discount Code Offered to Customer: ${report.discountOfferings}`
+                
+                    h5 Current Discount Information:
+                    div= `Total Current Customers In Store: ${report.activeCustomerCount}`
+                    div= `Number of Customer Logins Remaining Before Offer Presented: ${activeDiscountCode ? numberOfCustomersRemainingBeforeDiscountCodeOffered : 'Not Applied' }`
+                    div= `Discount Code Offered to Every Nth Guest: ${activeDiscountCode ? activeDiscountCode.offeredToEveryNthCustomer : 'Not Applied' }`
+                    div= `Active Discount Code: ${activeDiscountCode ? JSON.stringify(activeDiscountCode.discountCode) : 'Not Applied'}`

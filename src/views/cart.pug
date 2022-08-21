@@ -1,0 +1,79 @@
+doctype html
+html(lang='en')
+    head
+        title= `Welcome to `
+        style
+            include ..\public\css\styles.css
+            include ..\public\css\index.css
+            include ..\public\css\cart.css
+        script.
+            const emptyCart = () => {
+                fetch('/cart/empty', { 
+                    method: 'POST'
+                })
+                .then((response) => {
+                    window.location.href = '/cart';
+                })
+                .catch((e) => {
+                    console.log(e);
+                });
+            }
+
+            const purchase = () => {
+                fetch('/store/purchase', { 
+                    method: 'POST'
+                })
+                .then((response) => {
+                    document.getElementById('shim').style.display = 'block';
+                    document.getElementById('purchase').style.display = 'block';
+                })
+                .catch((e) => {
+                    console.log(e);
+                });
+            }
+
+            const closeDialog = () => {
+                window.location.href = '/store';
+            };
+
+            window.onload = () => {
+                
+            }
+    body
+        div.shim#shim
+        div.dialog#purchase
+            h4 Thank you!
+            p Your purchase is complete
+            button(onclick=`closeDialog()`) Return to Store
+
+        div.header
+            ol
+                li= `Welcome ${username}`
+            ol.right-aligned
+                li
+                    a(href="/store") Leave Cart
+                li
+                    a(href="/user/logout") Logout
+
+        div.content
+            
+            table
+                tr  
+                    th.image
+                    th Name 
+                    th Price 
+                    th Discount
+                    th Adjusted Price
+                each product in products
+                    tr 
+                        td
+                            img(src=`/images/${product.image}.jpg`, height="30")
+                        td= product.name
+                        td= product.price.toFixed(2)
+                        td= (discountCode ? discountCode.code : 'None Applied')
+                        td= (discountCode ? (product.price - (discountCode.priceAdjustment * product.price)).toFixed(2) : product.price.toFixed(2))
+            div.total= `Total: ${total.toFixed(2)}`
+            div.buttons
+                if products.length > 0
+                    button(onclick=`emptyCart()`) Empty Cart
+                    button(onclick=`purchase()`) Purchase!

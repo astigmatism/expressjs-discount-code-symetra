@@ -1,0 +1,150 @@
+{
+    "store": {
+        "name": "My Store"
+    },
+    "users": [
+        {
+            "id": "1",
+            "username": "admin",
+            "phrase": "password",
+            "isAdmin": true
+        },
+        {
+            "id": "2",
+            "username": "customer",
+            "phrase": "password",
+            "isAdmin": false
+        }
+    ],
+    "discountcodes": [
+        {
+            
+            "id": 1,
+            "code": "FREQUENT BUYER",
+            "description": "All store items 10% off",
+            "priceAdjustment": 0.1
+        },
+        {
+            "id": 2,
+            "code": "💾 MEDIA! 💾",
+            "description": "All store items 20% off",
+            "priceAdjustment": 0.2
+        },
+        {
+            "id": 3,
+            "code": "🎉 FAVORITE CUSTOMER 🎉",
+            "description": "All store items 30% off",
+            "priceAdjustment": 0.3
+        },
+        {
+            "id": 4,
+            "code": "MUST MOVE PRODUCT 💣🪓🧨",
+            "description": "All store items 50% off",
+            "priceAdjustment": 0.5
+        },
+        {
+            "id": 5,
+            "code": "💸 EVERYTHING FOR FREE! 💸",
+            "description": "Complete liquidation",
+            "priceAdjustment": 1
+        }
+    ],
+    "products": [
+        {
+            "id": 1,
+            "name": "Mega Man 2",
+            "price": 32.55,
+            "image": "eJyLVspLLVbSUfJNTU_MTcxT8PRE4ShohGoqRCvG6oFUxQIAM58NJg=="
+        },
+        {
+            "id": 2,
+            "name": "Mega Man 3",
+            "price": 24.62,
+            "image": "eJyLVspLLVbSUfJNTU_MTcxT8PT0ROUpaIRqKmgEFOWX5JdUFqRqKkQrxuqB9MQCABWjEf8="
+        },
+        {
+            "id": 3,
+            "name": "Mega Man 6",
+            "price": 54.16,
+            "image": "eJyLVspLLVbSUfJNTU_MTcxTCPNE4ShohGoqRCvG6oFUxQIANegNQA=="
+        },
+        {
+            "id": 4,
+            "name": "Kirby's Adventure",
+            "price": 27.37,
+            "image": "eJyLVspLLVbSUfLOLEqqVC9WcEwpS80rKS1KxSamoBGqqaAREORuoKkQrRirB9IaCwDLwBSy"
+        },
+        {
+            "id": 5,
+            "name": "Super Mario Bros. 2",
+            "price": 21.40,
+            "image": "eJyLVspLLVbSUQouLUgtUvBNLMrMV3Aqyi_WUzDCLqqgEaqpoBEQ5G6gqRCtGKsH0h4LAPk6FJo="
+        },
+        {
+            "id": 6,
+            "name": "Super Mario Bros. 3",
+            "price": 19.45,
+            "image": "eJyLVspLLVbSUQouLUgtUvBNLMrMV3Aqyi_WUzDGLqqgEaqpoBEQ5G6gqRCtGKsH0h4LAPl8FJw="
+        },
+        {
+            "id": 7,
+            "name": "Spy Hunter",
+            "price": 7.34,
+            "image": "eJyLVspLLVbSUQouqFTwKM0rSS1C4ShohGoqRCvG6oFUxQIARS8N+g=="
+        },
+        {
+            "id": 8,
+            "name": "Wrecking Crew",
+            "price": 20,
+            "image": "eJyLVspLLVbSUQovSk3OzsxLV3AuSi1H5ytohGsqRCvG6oHUxgIArLcQLg=="
+        },
+        {
+            "id": 9,
+            "name": "River City Ransom",
+            "price": 39.32,
+            "image": "eJyLVspLLVbSUQrKLEstUnDOLKlUCErMK87PxSamoBGqqRCtGKsH0hMLAEC2Evg="
+        },
+        {
+            "id": 10,
+            "name": "Bubble Bobble",
+            "price": 19.97,
+            "image": "eJyLVspLLVbSUXIqTUrKSVVwygdR6HwFjVBNhWjFWD2Q2lgAnhsPug=="
+        },
+        {
+            "id": 11,
+            "name": "Castlevania",
+            "price": 27.46,
+            "image": "eJyLVspLLVbSUXJOLC7JSS1LzMtMROUpaIRqKmgEBLkbaCpEK8bqgZTHAgDdzRC2"
+        },
+        {
+            "id": 12,
+            "name": "Castlevania II: Simon's Quest",
+            "price": 14.50,
+            "image": "eJyLVspLLVbSUXJOLC7JSS1LzMtMVPD0VNBVCM7Mzc9TL1YILE0tLiGoQEEjVFMhWjFWD2RaLACcvhsO"
+        },
+        {
+            "id": 13,
+            "name": "Zelda II: The Adventure of Link",
+            "price": 20.66,
+            "image": "eJyLVspLLVbSUYpKzUlJVPD0VNBVCMlIVXBMKUvNKyktSlXIT1PwyczLJkKJgkaopkK0YqweyMRYANlfG5g="
+        },
+        {
+            "id": 14,
+            "name": "Iron Sword: Wizards & Warriors II",
+            "price": 4,
+            "image": "eJyLVspLLVbSUfIsys8rLs8vSlHQVQjPrEosSilWUFMITywqyswvKlbw9CRGjYJGqKZCtGKsHsjMWABlgx1o"
+        },
+        {
+            "id": 15,
+            "name": "Mega Man 4",
+            "price": 42.51,
+            "image": "eJyLVspLLVbSUfJNTU_MTcxT8AxD4ShohGoqaAQEuRtoKkQrxuqBFMcCAJOEDso="
+        },
+        {
+            "id": 16,
+            "name": "The Legend of Zelda",
+            "price": 28.07,
+            "image": "eJyLVspLLVbSUfJJTU_NS1HIT1OISs1JSdRRCMlIxSGsoBGqqaAREORuoKkQrRirBzIgFgAmgBVi"
+        }
+    ]
+}
