@@ -2,9 +2,11 @@
  
 To run:
 
+- Clone repo
 - Install Node Packages: npm i
 - Setup Environment Variables (optional): The .env file contains environment variables. The default port is 3000, change this if you desire.
 - Run Server: npm start (compiles Typescript and moves static assets)
+- Visit localhost:3000 in browser
 
 Requirements (as provided):
 - Store owner gives out discounts to every nth transaction
@@ -27,3 +29,4 @@ Additioal Goals/Assumptions:
 - Customers remain logged into the store after a purchase and can purchase further items
 - The admin can clear a currently active discount code campaign
 - When the admin sets a new discount code campaign, it resets the count of the "nth customer" if replacing an existing campaign
+- Included TSLint during development process for static analysis
