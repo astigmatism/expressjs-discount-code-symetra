@@ -4,4 +4,4 @@ import * as shell from 'shelljs';
 shell.cp("-R", ["src/views", "src/public"], "dist/");
 
 // Remove unnecessary files
-shell.rm(["dist/public/js/*.ts", "dist/public/js/*.json"]);
+// shell.rm(["dist/public/js/*.ts", "dist/public/js/*.json"]);
