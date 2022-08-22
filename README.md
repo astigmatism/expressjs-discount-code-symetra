@@ -12,3 +12,4 @@ Requirements (as provided):
 - Customers can then purchase items using the discount code if available
 - The store owner reviews at various times what the count of purchases that were made
 - The store owner reviews at various times the total count of discounts that were given out
+- Stretch: Develop a simple UI with different pages for admin and customer
