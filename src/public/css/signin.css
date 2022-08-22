@@ -23,7 +23,7 @@
 
     width: 400px;
     border-radius: 5px;
-    padding: 10px;
+    padding: 20px;
     box-shadow: 0px 0px 20px 3px #999;
 
     position: absolute;
@@ -51,7 +51,12 @@
     margin: 10px 0;
 }
 
-select, input {
+select {
+    width: 190px;
+    font-size: 16px;
+}
+
+input {
     width: 180px;
     font-size: 16px;
 }
